@@ -1,10 +1,13 @@
+import { Provider } from "react-redux"
 import "./App.css"
 import { Counter } from "./features/counter/Counter"
-import { Quotes } from "./features/quotes/Quotes"
+// import { Quotes } from "./features/quotes/Quotes"
 import logo from "./logo.svg"
+import {store} from "../Centralise-Store/src/store/store";
 
 const App = () => {
   return (
+    <Provider store={store}>
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
@@ -12,7 +15,7 @@ const App = () => {
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
-        <Quotes />
+        {/* <Quotes /> */}
         <span>
           <span>Learn </span>
           <a
@@ -62,6 +65,7 @@ const App = () => {
         </span>
       </header>
     </div>
+    </Provider>
   )
 }
 

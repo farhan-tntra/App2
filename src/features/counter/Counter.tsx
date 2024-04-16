@@ -1,27 +1,24 @@
 import { useState } from "react"
 
-import { useAppDispatch, useAppSelector } from "../../app/hooks"
+import { useDispatch, useSelector } from "react-redux"
+// import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import styles from "./Counter.module.css"
 import {
   decrement,
   increment,
-  incrementAsync,
   incrementByAmount,
-  incrementIfOdd,
-  selectCount,
-  selectStatus,
-} from "./counterSlice"
+} from "../../../Centralise-Store/src/feature/Counter"
 
 export const Counter = () => {
-  const dispatch = useAppDispatch()
-  const count = useAppSelector(selectCount)
-  const status = useAppSelector(selectStatus)
+  const dispatch = useDispatch()
+  const count = useSelector((state:any)=>state.count?.value);
   const [incrementAmount, setIncrementAmount] = useState("2")
 
   const incrementValue = Number(incrementAmount) || 0
 
   return (
     <div>
+       <h3>React App 2 </h3>
       <div className={styles.row}>
         <button
           className={styles.button}
@@ -56,21 +53,6 @@ export const Counter = () => {
           onClick={() => dispatch(incrementByAmount(incrementValue))}
         >
           Add Amount
-        </button>
-        <button
-          className={styles.asyncButton}
-          disabled={status !== "idle"}
-          onClick={() => dispatch(incrementAsync(incrementValue))}
-        >
-          Add Async
-        </button>
-        <button
-          className={styles.button}
-          onClick={() => {
-            dispatch(incrementIfOdd(incrementValue))
-          }}
-        >
-          Add If Odd
         </button>
       </div>
     </div>
